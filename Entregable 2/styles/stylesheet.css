@@ -1,0 +1,13 @@
+body {
+    background-color: beige;
+}
+
+.container {
+    display: grid;
+    justify-items: center;
+}
+
+h1 {
+    color: rgb(62, 197, 145);
+    font-family: 'Lobster', cursive;
+}
