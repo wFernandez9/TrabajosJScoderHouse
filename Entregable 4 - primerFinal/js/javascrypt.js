@@ -61,7 +61,7 @@ do {
         alert("Por favor ingrese una opcion")
         intUsuario = prompt("Desea comprar(Si/No) o Agregar un producto(ADD)")
     }
-
+    //Si el usuario quiere comprar, agrega al carrito y devuelve precio final
     if (intUsuario == "si") {
         let continuar = true;
         do {
@@ -80,6 +80,8 @@ do {
 
     else if (intUsuario == "add") {
         let continuar = true;
+
+        //agrega nuevos libros a productos
         do {
             agregarlibro();
             alert("Libro agregados")
