@@ -73,7 +73,7 @@ function crearCard(producto) {
     cuerpoCarta.className = "card-body p-4";
     cuerpoCarta.innerHTML = `
         <h5>${producto.nombre}</h5>
-        <p>$ ${producto.precio} USD</p>
+        <p>$ ${producto.precio}</p>
     `;
     cuerpoCarta.append(footerCard);
     cuerpoCarta.append(botonAgregar);
