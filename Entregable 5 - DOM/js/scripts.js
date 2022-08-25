@@ -7,8 +7,9 @@ class ElementoCarrito {
 
 //clase constructora de nuevo objetos
 class libro {
-    constructor(nombre, precio, foto, id) {
+    constructor(nombre, genero, precio, foto, id) {
         this.nombre = nombre
+        this.genero = genero
         this.precio = precio
         this.id = id
         this.foto = foto
@@ -20,11 +21,12 @@ class libro {
 const producto = [];
 
 function cargarProductos() {
-    producto.push(new libro("Martin Fierro", 630, "./img/martinfierro.jpg", 001));
-    producto.push(new libro("El diario de Ana Frank", 800, "./img/anafrank.jpg", 002));
-    producto.push(new libro("La Divina Comedia", 900, "./img/ladivinacomedia.png", 003));
-    producto.push(new libro("El Avaro", 620, "./img/elavaro.jpg", 004));
-    producto.push(new libro("La Politica", 780, "./img/lapolitica.png", 005));
+    producto.push(new libro("Martin Fierro", "gauchesco", 630, "./img/martinfierro.jpg", 001));
+    producto.push(new libro("El diario de Ana Frank", "Biografía", 800, "./img/anafrank.jpg", 002));
+    producto.push(new libro("La Divina Comedia", "literatura", 900, "./img/ladivinacomedia.png", 003));
+    producto.push(new libro("El Avaro", "Comedia", 620, "./img/elavaro.jpg", 004));
+    producto.push(new libro("La Politica", "Tratado", 780, "./img/lapolitica.png", 005));
+    producto.push(new libro("Cuando no queden mas entrellas que contar", "Novela", 500, "./img/cuandonoquedenmasestrellasquecontar.webp"));
 }
 cargarProductos();
 
@@ -52,6 +54,13 @@ function dibujarCarrito() {
 
 //Carrito
 let carrito = [];
+if (localStorage.getItem("carrito") != null) {
+    carrito = JSON.parse(localStorage.getItem("carrito"));
+    //cargarlos en la tabla-Tarea
+} else {
+    carrito = [];
+}
+
 
 const contenedorCarritoCompras = document.querySelector('#items');
 const contenedorDeProductos = document.getElementsByClassName("row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center");
@@ -96,40 +105,44 @@ function crearCard(producto) {
 
     //agregar algunos eventos
     botonAgregar.onclick = () => {
-        //alert("Hiciste click en el producto" + producto.nombre);
+        //agregado el sweetalert
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Agregado al carrito',
+            showConfirmButton: false,
+            timer: 1500
+        })
 
         let elementoCarrito = new ElementoCarrito(producto, 1);
-        console.log(elementoCarrito);
         carrito.push(elementoCarrito);
         let total = precioFinal();
         let precioTotal = document.getElementById("precioTotal");
         precioTotal.innerHTML = "$" + total;
-        console.log(carrito);
         dibujarCarrito();
+        localStorage.setItem("carrito", JSON.stringify(carrito));
     }
 
     return carta;
 
 }
 
+
 function dibujarCatalogoProductos() {
     addProductos.innerHTML = "";
     producto.forEach(
         (producto) => {
-            let contenedorCarta = crearCard(producto)
-                ;
+            let contenedorCarta = crearCard(producto);
             addProductos.append(contenedorCarta);
         }
     );
 
 };
-
 dibujarCatalogoProductos();
 
 //funcion preciofinal
 function precioFinal() {
     let totalPrecios = carrito.reduce(((acumulador, carrito) => acumulador + carrito.producto.precio), 0);
-    console.log(totalPrecios);
     return totalPrecios;
 
 
