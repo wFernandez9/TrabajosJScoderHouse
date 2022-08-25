@@ -1,3 +1,4 @@
+let carrito = JSON.parse(localStorage.getItem("carrito"));
 class ElementoCarrito {
     constructor(producto, cantidad) {
         this.producto = producto;
@@ -53,9 +54,10 @@ function dibujarCarrito() {
 }
 
 //Carrito
-let carrito = [];
-if (localStorage.getItem("carrito") != null) {
+
+if (carrito) {
     carrito = JSON.parse(localStorage.getItem("carrito"));
+    console.log(carrito);
     //cargarlos en la tabla-Tarea
 } else {
     carrito = [];
@@ -102,7 +104,11 @@ function crearCard(producto) {
     let colum = document.createElement('div');
     colum.className = "col mb-5";
     colum.append(carta);
-
+    //dibujado desde el storage
+    let total = precioFinal();
+    let precioTotal = document.getElementById("precioTotal");
+    precioTotal.innerHTML = "$" + total;
+    dibujarCarrito();
     //agregar algunos eventos
     botonAgregar.onclick = () => {
         //agregado el sweetalert
@@ -111,7 +117,7 @@ function crearCard(producto) {
             icon: 'success',
             title: 'Agregado al carrito',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1000
         })
 
         let elementoCarrito = new ElementoCarrito(producto, 1);
