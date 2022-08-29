@@ -1,4 +1,13 @@
-let carrito = JSON.parse(localStorage.getItem("carrito"));
+//Carrito
+
+/* let carrito = JSON.parse(localStorage.getItem("carrito"));
+if (carrito) {
+    carrito = JSON.parse(localStorage.getItem("carrito"));
+} else {
+    carrito = [];
+} */
+const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
 class ElementoCarrito {
     constructor(producto, cantidad) {
         this.producto = producto;
@@ -53,16 +62,6 @@ function dibujarCarrito() {
     contenedorCarritoCompras.innerHTML = renglonesCarrito;
 }
 
-//Carrito
-
-if (carrito) {
-    carrito = JSON.parse(localStorage.getItem("carrito"));
-    console.log(carrito);
-    //cargarlos en la tabla-Tarea
-} else {
-    carrito = [];
-}
-
 
 const contenedorCarritoCompras = document.querySelector('#items');
 const contenedorDeProductos = document.getElementsByClassName("row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center");
@@ -112,13 +111,7 @@ function crearCard(producto) {
     //agregar algunos eventos
     botonAgregar.onclick = () => {
         //agregado el sweetalert
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Agregado al carrito',
-            showConfirmButton: false,
-            timer: 1000
-        })
+        cartelAdd();
 
         let elementoCarrito = new ElementoCarrito(producto, 1);
         carrito.push(elementoCarrito);
@@ -153,6 +146,14 @@ function precioFinal() {
 
 
 }
-
-
+//funcion de cartel de Sweet
+function cartelAdd() {
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Agregado al carrito',
+        showConfirmButton: false,
+        timer: 1000
+    })
+}
 
