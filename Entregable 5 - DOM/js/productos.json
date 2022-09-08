@@ -1,0 +1,44 @@
+[
+    {
+        "nombre": "Deno Succinctly",
+        "genero": "literatura",
+        "precio": "432",
+        "foto": "https://itbook.store/img/books/9781642002140.png",
+        "id": "007"
+    },
+    {
+        "nombre": "Robotics, AI, and Humanity",
+        "genero": "Biografía",
+        "precio": "800",
+        "foto": "https://itbook.store/img/books/9783030541729.png",
+        "id": "008"
+    },
+    {
+        "nombre": "Introduction to Autonomous Robots, 3rd Edition",
+        "genero": "Manual",
+        "precio": "620",
+        "foto": "https://itbook.store/img/books/9781493773077.png",
+        "id": "009"
+    },
+    {
+        "nombre": "Learning Go",
+        "genero": "Manual",
+        "precio": "780",
+        "foto": "https://itbook.store/img/books/9781492077213.png",
+        "id": "010"
+    },
+    {
+        "nombre": "Open Workbook of Cryptology",
+        "genero": "Manual",
+        "precio": "500",
+        "foto": "https://itbook.store/img/books/1001656678502.png",
+        "id": "011"
+    },
+    {
+        "nombre": "Embracing Modern C++ Safely",
+        "genero": "Manual",
+        "precio": "750",
+        "foto": "https://itbook.store/img/books/9780137380350.png",
+        "id": "012"
+    }
+]

@@ -18,17 +18,18 @@ class ElementoCarrito {
 //clase constructora de nuevo objetos
 class libro {
     constructor(nombre, genero, precio, foto, id) {
-        this.nombre = nombre
-        this.genero = genero
-        this.precio = precio
-        this.id = id
-        this.foto = foto
+        this.nombre = nombre;
+        this.genero = genero;
+        this.precio = Number(precio);
+        this.id = Number(id);
+        this.foto = foto;
     }
 }
 
 
 //productos ya declarados
-const producto = [];
+let producto = [];
+const productos = [];
 
 function cargarProductos() {
     producto.push(new libro("Martin Fierro", "gauchesco", 630, "./img/martinfierro.jpg", 001));
@@ -36,9 +37,21 @@ function cargarProductos() {
     producto.push(new libro("La Divina Comedia", "literatura", 900, "./img/ladivinacomedia.png", 003));
     producto.push(new libro("El Avaro", "Comedia", 620, "./img/elavaro.jpg", 004));
     producto.push(new libro("La Politica", "Tratado", 780, "./img/lapolitica.png", 005));
-    producto.push(new libro("Cuando no queden mas entrellas que contar", "Novela", 500, "./img/cuandonoquedenmasestrellasquecontar.webp"));
+    producto.push(new libro("Cuando no queden mas entrellas que contar", "Novela", 500, "./img/cuandonoquedenmasestrellasquecontar.webp", 006));
 }
 cargarProductos();
+
+//traigo de la api y lo pusheo a un array
+const librosApi = [];
+
+async function apiLibros() {
+    const APIGET = "./js/productos.json";
+    const resp = await fetch(APIGET);
+    const data = await resp.json();
+    data.forEach(e => producto.push(new libro(e.nombre, e.genero, e.precio, e.foto, e.id)))
+    /* producto.push(data); */
+    /* producto = productos.concat(librosApi); */
+}
 
 
 
@@ -127,10 +140,12 @@ function crearCard(producto) {
 }
 
 
-function dibujarCatalogoProductos() {
+async function dibujarCatalogoProductos() {
+    await apiLibros();
     addProductos.innerHTML = "";
     producto.forEach(
         (producto) => {
+            console.log(producto);
             let contenedorCarta = crearCard(producto);
             addProductos.append(contenedorCarta);
         }
@@ -156,4 +171,3 @@ function cartelAdd() {
         timer: 1000
     })
 }
-
