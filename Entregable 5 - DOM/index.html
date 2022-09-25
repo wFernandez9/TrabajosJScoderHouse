@@ -52,23 +52,21 @@
                                         <th scope="col">ID</th>
                                         <th scope="col">Nombre</th>
                                         <th scope="col">Cantidad</th>
+                                        <th scope="col">Precio</th>
                                         <th scope="col">Total</th>
+                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody id="items"></tbody>
+                                <tfoot>
+                                    <tr id="footer">
+                                        <th scope="row" colspan="6">Carrito vacío - comience a comprar!</th>
+                                    </tr>
+                                </tfoot>
                             </table>
                             <div class="row" id="cards"></div>
                         </div>
-                        <div>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Precio total</th>
-                                        <th id="precioTotal" scope="col">$0000</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
