@@ -114,6 +114,19 @@ function dibujarCarrito() {
     }
 
 }
+
+let finalizar = document.querySelector('#finalizar')
+finalizar.onclick = () => {
+    Swal.fire({
+        title: 'Orden confirmada!',
+        text: 'Gracias por su compra!',
+        icon: 'success',
+        confirmButtonText: 'Cerrar'
+    })
+}
+
+
+
 //remover producto del carrito
 function removerProductoCarrito(elementoAEliminar) {
     const elementosAMantener = carrito.filter((elemento) => elementoAEliminar.producto.id != elemento.producto.id);
@@ -122,6 +135,8 @@ function removerProductoCarrito(elementoAEliminar) {
 
     elementosAMantener.forEach((elemento) => carrito.push(elemento));
 }
+
+
 
 
 
